@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: collectives
+  labels:
+    app: collectives
+spec:
+  ports:
+    - port: 5000
+  selector:
+    app: collectives
+    tier: frontend
+  type: LoadBalancer
+  externalIPs:
+    - 57.128.82.110 #TODO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: collectives
+  labels:
+    app: collectives
+spec:
+  selector:
+    matchLabels:
+      app: collectives
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: collectives
+        tier: frontend
+    spec:
+      containers:
+      - image: cafannecy/collectives:vx3
+        name: collectives
+        env:
+        ports:
+        - containerPort: 5000
+          name: collectives
+        volumeMounts:
+        - name: collectives-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: collectives-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: local
+  capacity:
+    storage: 7Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  hostPath:
+    path: "/app/static/uploads"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-claim
+spec:
+  storageClassName: local
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
