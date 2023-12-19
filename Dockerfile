@@ -3,7 +3,8 @@ FROM python:3.11
 MAINTAINER Caf Annecy "digital@cafannecy.fr"
 
 # Python packages
-COPY . /app
+COPY collectives deployment/docker instance logs migrations config.py logging.cfg requirements.txt /app/
+RUN pip install --upgrade pip
 RUN pip install -r /app/requirements.txt
 RUN pip install waitress
 RUN chmod +x /app/deployment/docker/entrypoint.sh

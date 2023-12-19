@@ -1,0 +1,36 @@
+Docker
+========
+
+The docker produces by the ``Dockerfile`` file is meant to be used in production. 
+It uses waitress to serve requests.
+
+.. note::
+
+    A DB update is automatically done before docker start, by the ``entrypoint.sh``
+    script.
+
+DockerHub
+---------
+
+Offical docker of collectives are distributed `DockerHub cafannecy repository <https://hub.docker.com/repository/docker/cafannecy/collectives>`_ .
+
+Versions are linked to those on github.
+
+Use cafannecy/collectives docker
+---------------------------------
+
+Those mounts are recommended since they contains app generated data that should be kept.
+
+* ``/app/collectives/static/uploads`` contains user uploads
+* ``/app/collectives/private_assets`` contains data that should not be exposed by ``static`` blueprint.
+
+Build cafannecy/collectives docker
+-----------------------------------
+
+On a machine with `docker <https://docs.docker.com/get-docker/>`_, perform these steps to build
+the version ``vX.X``:
+
+.. code-block::
+    docker build https://github.com/Club-Alpin-Annecy/collectives.git#vX.X
+    docker login # if required
+    docker push collectives:vX.X

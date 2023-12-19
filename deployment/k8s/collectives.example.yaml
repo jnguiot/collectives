@@ -30,7 +30,8 @@ spec:
    - --to-be-replaced-- # The hostname of the website
    secretName: collectives-ingress-tls 
  rules:
- - http:
+ - host: --to-be-replaced-- # The hostname of the website
+   http:
      paths:
      - backend:
          service:
