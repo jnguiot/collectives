@@ -9,6 +9,7 @@ COPY instance /app/instance/
 COPY logs /app/logs/
 COPY migrations /app/migrations/
 COPY config.py logging.cfg requirements.txt /app/
+COPY deployment/docker/logging.cfg /app/
 
 RUN pip install --upgrade pip
 RUN pip install -r /app/requirements.txt

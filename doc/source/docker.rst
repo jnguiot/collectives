@@ -24,6 +24,7 @@ Those mounts are recommended since they contains app generated data that should 
 * ``/app/collectives/static/uploads`` contains user uploads
 * ``/app/collectives/private_assets`` contains data that should not be exposed by ``static`` blueprint.
 
+
 Build cafannecy/collectives docker
 -----------------------------------
 
