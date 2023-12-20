@@ -25,12 +25,13 @@ Code, participation, and issue reporting can be done on github: `https://github.
    :caption: Help:
 
    howto
-   deployment
    configuration
    architecture
    github_validation
    html
    tests
+   deployment
+   docker
 
 .. toctree::
    :maxdepth: 1

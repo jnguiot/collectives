@@ -96,7 +96,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: cafannecy/collectives:vx3
+        - image: cafannecy/collectives:latest
           name: collectives
           env:
             - name: ADMINPWD

@@ -32,6 +32,8 @@ On a machine with `docker <https://docs.docker.com/get-docker/>`_, perform these
 the version ``vX.X``:
 
 .. code-block::
-    docker build https://github.com/Club-Alpin-Annecy/collectives.git#vX.X
+    
+    docker build -t cafannecy/collectives:vX.X https://github.com/Club-Alpin-Annecy/collectives.git#vX.X
     docker login # if required
-    docker push collectives:vX.X
+    docker push cafannecy/collectives:vx4
+
